@@ -1,10 +1,11 @@
-import {ScreenStats,NodeLink, DEPRECATED_COMPONENTS, UNNAMED, UNSTYLED, USELESS_GROUPS, ILLEGAL_AUTOLAYOUT, ILLEGAL_ROUNDINGS, ScreenStatsSerialized} from "../constants";
+import {ScreenStats,NodeLink, DEPRECATED_COMPONENTS, UNNAMED, UNSTYLED, USELESS_GROUPS, ILLEGAL_AUTOLAYOUT, ILLEGAL_ROUNDINGS, ScreenStatsSerialized} from "../shared";
 import { useState } from 'react'
 import NavButton from './NavButton/NavButton';
+import ScreenStatsComponent from './ScreenStats/ScreenStats';
 import './App.scss';
 import React from "react";
 
-class App extends React.Component {
+class App extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -32,7 +33,7 @@ class App extends React.Component {
 
   render() {
     return (
-    <main>
+    <div id="app-container">
       <nav>
         <ul role="list">
           <li>
@@ -47,7 +48,11 @@ class App extends React.Component {
         </ul>
         <button onClick={() => this.handleGatherStats()}>Gather Stats</button>
       </nav>
-    </main>
+      <main>
+        {this.state.results.map((screenStats: ScreenStatsSerialized) => 
+        <ScreenStatsComponent stats={screenStats}/>)}
+      </main>
+    </div>
   );}
 }
 

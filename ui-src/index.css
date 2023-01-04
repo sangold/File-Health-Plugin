@@ -6,8 +6,8 @@
 
   font-family: "Inter", Avenir, Helvetica, Arial, sans-serif;
   color: var(--dark-grey);
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 14px;
+  line-height: 1.5;
   font-weight: 400;
 
   font-synthesis: none;
@@ -29,6 +29,7 @@ h1,
 h2,
 h3,
 h4,
+h5,
 p,
 figure,
 blockquote,
@@ -75,4 +76,10 @@ button,
 textarea,
 select {
   font: inherit;
+}
+
+.small {
+  font-size: .875rem;
+  font-weight: 400;
+  color: var(--light-grey);
 }

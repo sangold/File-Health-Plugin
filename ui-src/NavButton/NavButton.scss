@@ -4,15 +4,10 @@ button {
   border: none;
   text-align: left;
   border-bottom: var(--line);
+  padding: 8px;
   &:hover {
     background-color: var(--line-grey);
   }
-}
-
-h4 {
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--light-grey);
 }
 
 .progressBar {

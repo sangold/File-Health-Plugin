@@ -1,0 +1,20 @@
+.screenstats-line {
+  display: flex;
+  flex-direction: column;
+}
+.line-header {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  padding: 4px 8px;
+  border-bottom: var(--line);
+  &:hover {
+    background-color: var(--line-grey);
+  }
+}
+
+.line-header-section {
+  &:last-of-type {
+    margin-left: auto;
+  }
+}

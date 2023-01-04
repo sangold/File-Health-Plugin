@@ -11,7 +11,7 @@ function NavButton(props: any) {
         <div className="progression" style={{width: percentage+"%"}}></div>
       </div>
       }
-      <h4>{props.name}</h4>
+      <h4 className="small">{props.name}</h4>
     </button>
   );
 }

@@ -1,4 +1,4 @@
-import {ScreenStats,NodeLink, DEPRECATED_COMPONENTS, UNNAMED, UNSTYLED, USELESS_GROUPS, ILLEGAL_AUTOLAYOUT, ILLEGAL_ROUNDINGS} from "../constants";
+import {ScreenStats,NodeLink, DEPRECATED_COMPONENTS, UNNAMED, UNSTYLED, USELESS_GROUPS, ILLEGAL_AUTOLAYOUT, ILLEGAL_ROUNDINGS} from "../shared";
 let authorizedSpacingsString: string = "0,4,8,12,16,24,32,36,40,48,64";
 let authorizedRoundingString: string = "0,4,8";
 const authorizedRounding = authorizedRoundingString.split(",").map((v) => parseInt(v));

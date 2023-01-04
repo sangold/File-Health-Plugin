@@ -1,0 +1,22 @@
+.lint-container {
+  width: 100%;
+  padding: 8px 16px;
+  border-bottom: var(--line);
+}
+.link-to-element {
+  padding: 0;
+  border: none;
+  text-decoration: underline;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.lint-ul {
+  list-style: none;
+  columns: 3;
+  column-gap: 16px;
+  padding: 0;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
