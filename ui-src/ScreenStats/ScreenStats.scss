@@ -1,15 +1,29 @@
 .screenstats-line {
   display: flex;
   flex-direction: column;
+  border-bottom: var(--line);
 }
 .line-header {
   display: flex;
   align-items: stretch;
   width: 100%;
   padding: 4px 16px;
-  border-bottom: var(--line);
+  cursor: pointer;
   &:hover {
     background-color: var(--line-grey);
+  }
+}
+.line-title {
+  margin-right: 8px;
+}
+.link-to-screen {
+  padding: 2px 4px;
+  text-decoration: underline;
+  font-size: .875rem;
+  color:var(--light-grey);
+  cursor: pointer;
+  &:hover {
+    color:var(--dark-grey);
   }
 }
 

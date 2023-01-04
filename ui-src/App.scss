@@ -1,21 +1,18 @@
-nav ul {
+nav{
   width: 100px;
-  border-right: var(--line);
   display: flex;
   flex-direction: column;
-
-  li:last {
-    margin-top: auto;
-  }
+  border-right: var(--line);
 }
 #app-container {
   width: 100%;
   display: flex;
-  min-height: 100%;
+  height: 100%;
   justify-content: stretch;
 }
 
 main {
   flex: 1;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }

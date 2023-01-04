@@ -11,6 +11,11 @@ class ScreenStatsComponent extends React.Component<{stats:ScreenStatsSerialized}
     };
   }
 
+  handleGoToScreen(e:any, id: string) {
+    e.stopPropagation();
+    parent.postMessage({ pluginMessage: { type: 'goTo', id: id } }, '*');
+  }
+
   render() {
     return (
       <div className="screenstats-line">
@@ -19,6 +24,9 @@ class ScreenStatsComponent extends React.Component<{stats:ScreenStatsSerialized}
             {this.props.stats.name}
           </h4>
           <div className="line-header-section">
+            <span className='link-to-screen' onClick={(e) => this.handleGoToScreen(e, this.props.stats.node.id)}>
+              go to screen
+              </span>
           </div>
           <div className="line-header-section small">
             {this.props.stats.nondsscore} DS errors | {this.props.stats.designscore} Design errors | {this.props.stats.nonAutoLayoutFrames} Misc errors

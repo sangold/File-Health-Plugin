@@ -12,11 +12,13 @@ button {
 
 .progressBar {
   width: 100%;
-  height: 4px;
-  background-color: red;
+  height: 9px;
+  border-radius: 2px;
+  margin-bottom: 6px;
+  background-color: var(--line-grey);
+  overflow: hidden;
 
   .progression {
     height: 100%;
-    background-color: blue;
   }
 }

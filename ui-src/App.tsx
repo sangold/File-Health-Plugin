@@ -45,8 +45,11 @@ class App extends React.Component<any, any> {
           <li>
             <NavButton name="Misc. warnings" value={this.state.globalStats.totalNonAutoLayout} total={this.state.globalStats.totalNodes} />
           </li>
+          <li>
+            <button>All</button>
+          </li>
         </ul>
-        <button onClick={() => this.handleGatherStats()}>Gather Stats</button>
+        <button style={{marginTop: 'auto'}} onClick={() => this.handleGatherStats()}>Gather Stats</button>
       </nav>
       <main>
         {this.state.results.map((screenStats: ScreenStatsSerialized) => 
