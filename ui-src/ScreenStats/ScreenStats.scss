@@ -13,8 +13,19 @@
     background-color: var(--line-grey);
   }
 }
+
+.screenstats-stat {
+  margin: 0 4px;
+  display: inline-block;
+  text-align: right;
+  width: 88px;
+}
 .line-title {
   margin-right: 8px;
+  width: 164px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .link-to-screen {
   padding: 2px 4px;

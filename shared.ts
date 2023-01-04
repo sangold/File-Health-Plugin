@@ -1,9 +1,12 @@
 export const DEPRECATED_COMPONENTS = "Deprecated Components";
-export const ILLEGAL_AUTOLAYOUT = "Illegal Autolayouts";
+export const ILLEGAL_AUTOLAYOUT = "Illegal Spacings";
 export const ILLEGAL_ROUNDINGS = "Illegal Roundings";
 export const UNSTYLED = "Unstyled elements";
 export const UNNAMED = "Unnamed elements";
 export const USELESS_GROUPS = "Useless groups";
+export const DS_CRITERIA = [DEPRECATED_COMPONENTS, ILLEGAL_ROUNDINGS, UNSTYLED, ILLEGAL_AUTOLAYOUT]
+export const DESIGN_CRITERIA = [UNNAMED, USELESS_GROUPS]
+export const MISC_CRITERIA = []
 
 export interface LintResult {
   name: string;
@@ -59,7 +62,7 @@ export class ScreenStats {
     let resultsLinter: LintResult[] = [];
     this.results.forEach((v,k) => {
       resultsLinter.push({name: k, nodes: v});
-      if(k === ILLEGAL_ROUNDINGS || k === UNSTYLED || k === DEPRECATED_COMPONENTS)
+      if(DS_CRITERIA.indexOf(k) > -1)
       {
         v.forEach((nl) => {
           if(nondsid.indexOf(nl.id) === -1) {
@@ -68,7 +71,7 @@ export class ScreenStats {
           }
         })
       }
-      else {
+      else if (DESIGN_CRITERIA.indexOf(k) > -1) {
         v.forEach((nl) => {
           if (nondesignid.indexOf(nl.id) === -1) {
             nondesignperfect++;

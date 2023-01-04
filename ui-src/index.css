@@ -3,6 +3,8 @@
   --light-grey: #6B6F76;
   --line-grey: #EDF0F3;
   --line: .5px solid var(--line-grey);
+  --dark-blue: #178DFE;
+  --light-blue: #74BBFE;
 
   font-family: "Inter", Avenir, Helvetica, Arial, sans-serif;
   color: var(--dark-grey);
@@ -76,6 +78,10 @@ button,
 textarea,
 select {
   font: inherit;
+}
+
+button {
+  cursor: pointer;
 }
 
 .small {

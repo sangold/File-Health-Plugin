@@ -7,12 +7,15 @@ class LintResultsComponent extends React.Component<{stats:LintResult}, any> {
     super(props);
     this.state = {isOpen: false};
   }
-
+  
   handleOnLinkClicked(e:any, id: string) {
     e.stopPropagation();
     parent.postMessage({ pluginMessage: { type: 'goTo', id: id } }, '*');
   }
-
+  componentDidUpdate(prevProps: Readonly<{ stats: LintResult; }>, prevState: Readonly<any>, snapshot?: any): void {
+      if(prevProps !== this.props)
+        this.setState({isOpen: false});
+  }
   render() {
     return (
       <div className="lint-container">

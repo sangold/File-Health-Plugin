@@ -49,14 +49,16 @@ function visit(node: BaseNode, stats: ScreenStats) {
   
   if(node.type === "WIDGET" || node.type === "COMPONENT" || node.type === "COMPONENT_SET")
   return;
+  const nodeLink = GetLinkToNode(node);
 
+  if (isIllegalAutoLayout(node, authorizedSpacings)) stats.results.get(ILLEGAL_AUTOLAYOUT)?.push(nodeLink);
+  
   if(IsStructuralFrame(node)) {
     if (!supportsChildren(node)) { return; }
     if (node.children) node.children.forEach((n) => visit(n, stats));
     return;
   }
   
-  const nodeLink = GetLinkToNode(node);
 
   if (node.type === "INSTANCE") {
     if (isDeprecatedInstance(node))
@@ -79,8 +81,6 @@ function visit(node: BaseNode, stats: ScreenStats) {
   if (usesNonDSStyles(node)) {
     stats.results.get(UNSTYLED)?.push(nodeLink)
   }
-
-  if (isIllegalAutoLayout(node, authorizedSpacings)) stats.results.get(ILLEGAL_AUTOLAYOUT)?.push(nodeLink);
   
   if (!supportsChildren(node)) {return;}
   if(node.children) node.children.forEach((n) => visit(n, stats));
@@ -168,7 +168,7 @@ function usesNonDSStyles(node: BaseNode) {
 function isIllegalAutoLayout(node: BaseNode, authorizedSpacings: number[]) {
   if (node.type !== "FRAME" || node.layoutMode === "NONE") return false;
 
-  if (authorizedSpacings.indexOf(node.itemSpacing) === -1) return true;
+  if (authorizedSpacings.indexOf(node.itemSpacing) === -1 && node.primaryAxisAlignItems !== 'SPACE_BETWEEN') return true;
   if (authorizedSpacings.indexOf(node.paddingTop) === -1) return true;
   if (authorizedSpacings.indexOf(node.paddingRight) === -1) return true;
   if (authorizedSpacings.indexOf(node.paddingBottom) === -1) return true;

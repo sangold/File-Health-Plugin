@@ -1,14 +1,19 @@
 import './ScreenStats.scss';
 import React from "react";
-import { LintResult, ScreenStatsSerialized } from '../../shared';
+import { DESIGN_CRITERIA, DS_CRITERIA, LintResult, MISC_CRITERIA, ScreenStatsSerialized } from '../../shared';
 import LintResultsComponent from './LintResults/LintResultsComponent';
 
-class ScreenStatsComponent extends React.Component<{stats:ScreenStatsSerialized}, any> {
+class ScreenStatsComponent extends React.Component<{stats:ScreenStatsSerialized, filter:string}, any> {
   constructor(props: any) {
     super(props);
-    this.state ={
+    this.state = {
       isOpen: false
     };
+  }
+
+  componentDidUpdate(prevProps: Readonly<{ stats: ScreenStatsSerialized; filter: string; }>, prevState: Readonly<any>, snapshot?: any): void {
+    if(prevProps !== this.props)
+      this.setState({ isOpen: false });
   }
 
   handleGoToScreen(e:any, id: string) {
@@ -29,14 +34,28 @@ class ScreenStatsComponent extends React.Component<{stats:ScreenStatsSerialized}
               </span>
           </div>
           <div className="line-header-section small">
-            {this.props.stats.nondsscore} DS errors | {this.props.stats.designscore} Design errors | {this.props.stats.nonAutoLayoutFrames} Misc errors
+            {
+              (this.props.filter === "all" || this.props.filter === "ds") && 
+              <span className='screenstats-stat'>{this.props.stats.nondsscore} DS errors</span>
+            } 
+            {
+              (this.props.filter === "all" || this.props.filter === "design") &&
+              <span className='screenstats-stat'>{this.props.stats.designscore} Des. errors</span>
+            } 
+            {
+              (this.props.filter === "all" || this.props.filter === "misc") &&
+              <span className='screenstats-stat'>{this.props.stats.nonAutoLayoutFrames} Misc. errors</span>
+            }
           </div>
         </div>
         {(this.props.stats.results.length > 0 && this.state.isOpen) && 
         (<div className="line-details">
           {this.props.stats.results.map((lintResult: LintResult) => {
-            if(lintResult.nodes.length > 0)
+            if(lintResult.nodes.length > 0) {
+              if (this.props.filter === "ds" && DS_CRITERIA.indexOf(lintResult.name) === -1) return;
+              if (this.props.filter === "design" && DESIGN_CRITERIA.indexOf(lintResult.name) === -1) return;
               return <LintResultsComponent stats={lintResult}/>
+            }
           }
           )}
         </div>) }

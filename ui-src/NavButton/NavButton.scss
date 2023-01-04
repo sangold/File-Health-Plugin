@@ -8,6 +8,12 @@ button {
   &:hover {
     background-color: var(--line-grey);
   }
+  &.navButton.is-active {
+    color: var(--dark-blue);
+    h4 {
+      color: var(--light-blue);
+    }
+  }
 }
 
 .progressBar {
